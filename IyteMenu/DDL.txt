@@ -1,0 +1,97 @@
+﻿1.Restaurants
+
+CREATE TABLE [dbo].[Restaurants] (
+    [Id]                   INT            IDENTITY (1, 1) NOT NULL,
+    [Name]                 NVARCHAR (MAX) NULL,
+    [Star]                 INT            DEFAULT ((0)) NOT NULL,
+    [Comments]             INT            NULL,
+    [Address]              NVARCHAR (MAX) NULL,
+    [Delivery]             BIT            NULL,
+    [IsPopular]            BIT            NULL,
+    [CreditCardBankCard]   BIT            NULL,
+    [OpeningTime]          TIME (7)       NULL,
+    [MinimumFoodCost]      INT            NULL,
+    [Sodexo]               BIT            NULL,
+    [TicketRestaurantCard] BIT            NULL,
+    [Nakit]                BIT            NULL,
+    [Multinet]             BIT            NULL,
+    [SetCard]              BIT            NULL,
+    [CloseTime]            TIME (7)       NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+SET IDENTITY_INSERT [dbo].[Restaurants] ON
+INSERT INTO [dbo].[Restaurants] ([Id], [Name], [Star], [Comments], [Address], [Delivery], [IsPopular], [CreditCardBankCard], [OpeningTime], [MinimumFoodCost], [Sodexo], [TicketRestaurantCard], [Nakit], [Multinet], [SetCard], [CloseTime]) VALUES (1, N'Asmalı', 4, 13, N'Iyte Şenlik Alanı Mevkii Açılış 10:00', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT INTO [dbo].[Restaurants] ([Id], [Name], [Star], [Comments], [Address], [Delivery], [IsPopular], [CreditCardBankCard], [OpeningTime], [MinimumFoodCost], [Sodexo], [TicketRestaurantCard], [Nakit], [Multinet], [SetCard], [CloseTime]) VALUES (2, N'Calipso Cafe', 4, 93, N' Gülbahçe Mahallesi, 12069. Sk., 35430 Urla/Izmir', 1, 1, 1, N'09:00:00', 12, 1, 1, 1, 1, 1, N'01:00:00')
+INSERT INTO [dbo].[Restaurants] ([Id], [Name], [Star], [Comments], [Address], [Delivery], [IsPopular], [CreditCardBankCard], [OpeningTime], [MinimumFoodCost], [Sodexo], [TicketRestaurantCard], [Nakit], [Multinet], [SetCard], [CloseTime]) VALUES (3, N'Campus Cafe', 2, 87, N' Gülbahçe Mahallesi, 12069. Sk., 35430 Urla/Izmir', 0, 1, 1, N'09:00:00', 13, 1, 1, 1, 1, 1, N'01:00:00')
+SET IDENTITY_INSERT [dbo].[Restaurants] OFF
+
+=======================================================================
+
+CREATE TABLE [dbo].[Menus] (
+    [Id]           INT            IDENTITY (1, 1) NOT NULL,
+    [Yemek]        NVARCHAR (MAX) NOT NULL,
+    [Tarih]        DATE           NOT NULL,
+    [RestaurantId] INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+SET IDENTITY_INSERT [dbo].[Menus] ON
+INSERT INTO [dbo].[Menus] ([Id], [Yemek], [Tarih], [RestaurantId]) VALUES (1, N'İzmir Köfre', N'2018-03-01', 1)
+INSERT INTO [dbo].[Menus] ([Id], [Yemek], [Tarih], [RestaurantId]) VALUES (2, N'Patates Kızartması', N'2018-03-01', 1)
+INSERT INTO [dbo].[Menus] ([Id], [Yemek], [Tarih], [RestaurantId]) VALUES (3, N'İzmir Köfte', N'2018-03-14', 1)
+INSERT INTO [dbo].[Menus] ([Id], [Yemek], [Tarih], [RestaurantId]) VALUES (4, N'Pizza', N'2018-04-02', 1)
+INSERT INTO [dbo].[Menus] ([Id], [Yemek], [Tarih], [RestaurantId]) VALUES (5, N'karbonara', N'2018-02-26', 1)
+SET IDENTITY_INSERT [dbo].[Menus] OFF
+
+
+===========================================================================
+
+CREATE TABLE [dbo].[Meals] (
+    [Id]           INT            IDENTITY (1, 1) NOT NULL,
+    [Name]         NVARCHAR (MAX) NOT NULL,
+    [Detail]       NVARCHAR (MAX) NOT NULL,
+    [Price]        FLOAT (53)     NOT NULL,
+    [CategoryId]   INT            NOT NULL,
+    [RestaurantId] INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+SET IDENTITY_INSERT [dbo].[Meals] ON
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (1, N'Kazandibi', N'Fuisset mentitum deleniti sit ea.', 12, 1, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (2, N'Kazandibi', N'Fuisset mentitum deleniti sit ea.', 12, 1, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (3, N'Baklava', N'Fuisset mentitum deleniti sit ea.', 25, 1, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (4, N'Puding', N'Fuisset mentitum deleniti sit ea.', 13, 1, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (5, N'KemalPasa', N'Fuisset mentitum deleniti sit ea.', 17, 1, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (6, N'Tulumba', N'Fuisset mentitum deleniti sit ea.', 15, 1, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (7, N'Karisik Pizza', N'Fuisset mentitum deleniti sit ea.', 78, 2, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (8, N'Italyan Pizza', N'Fuisset mentitum deleniti sit ea.', 25, 2, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (9, N'Mantarli Pizza', N'Fuisset mentitum deleniti sit ea.', 12, 2, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (10, N'Sucuklu Pizza', N'Fuisset mentitum deleniti sit ea.', 23, 2, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (11, N'Patatesli Pizza', N'Fuisset mentitum deleniti sit ea.', 34, 2, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (12, N'Karbonara', N'Fuisset mentitum deleniti sit ea.', 7.8, 3, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (13, N'Bolonez', N'Fuisset mentitum deleniti sit ea.', 6.5, 3, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (14, N'Misirli Makarna', N'Fuisset mentitum deleniti sit ea.', 6, 3, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (15, N'Salçali Makarna', N'Fuisset mentitum deleniti sit ea.', 5, 3, 2)
+INSERT INTO [dbo].[Meals] ([Id], [Name], [Detail], [Price], [CategoryId], [RestaurantId]) VALUES (16, N'Yogurtlu Makarna', N'Fuisset mentitum deleniti sit ea.', 3, 3, 2)
+SET IDENTITY_INSERT [dbo].[Meals] OFF
+
+=================================================================================
+
+
+
+CREATE TABLE [dbo].[Categories]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NVARCHAR(MAX) NOT NULL, 
+    [Explanation] NVARCHAR(MAX) NOT NULL
+)
+SET IDENTITY_INSERT [dbo].[Categories] ON
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Explanation]) VALUES (1, N'Tatlilar', N'Te ferri iisque aliquando pro, posse nonumes efficiantur in cum. Sensibus reprimique eu pro. Fuisset mentitum deleniti sit ea.')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Explanation]) VALUES (2, N'Pizzalar', N'Te ferri iisque aliquando pro, posse nonumes efficiantur in cum. Sensibus reprimique eu pro. Fuisset mentitum deleniti sit ea.')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Explanation]) VALUES (3, N'Makarnalar', N'Te ferri iisque aliquando pro, posse nonumes efficiantur in cum. Sensibus reprimique eu pro. Fuisset mentitum deleniti sit ea.')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Explanation]) VALUES (4, N'Firin Çesitleri', N'Te ferri iisque aliquando pro, posse nonumes efficiantur in cum. Sensibus reprimique eu pro. Fuisset mentitum deleniti sit ea.')
+SET IDENTITY_INSERT [dbo].[Categories] OFF
+
+===================================================================================
